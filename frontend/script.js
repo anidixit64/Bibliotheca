@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
+    console.log('Script loaded');  // Add this line
     const bookForm = document.getElementById('book-form');
+    if (!bookForm) {
+        console.error('Form element not found');
+        return;
+    }
+    console.log('Form element found'); 
     const bookIdInput = document.getElementById('book-id');
     const titleInput = document.getElementById('title');
     const authorInput = document.getElementById('author');
@@ -76,9 +82,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     bookForm.addEventListener('submit', function (e) {
-        console.log('Clicked')
         e.preventDefault();
-        resetForm()
+        console.log('Form submitted');  // Add this line
+        submitBook()
     });
 
     bookList.addEventListener('click', function (e) {
