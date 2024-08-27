@@ -4,27 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Collection Tracker</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Book Collection Tracker</h1>
-
-    <div id="book-form">
-        <h2>Add / Edit Book</h2>
-        <input type="hidden" id="book-id" />
-        <label for="title">Title:</label>
+    <form id="book-form">
         <input type="text" id="title" placeholder="Book Title">
-        <label for="author">Author:</label>
         <input type="text" id="author" placeholder="Author Name">
-        <label for="read">Read:</label>
         <input type="checkbox" id="read">
-        <button id="submit-book">Submit</button>
-    </div>
-
-    <div id="book-list">
-        <h2>Your Books</h2>
-        <ul id="books"></ul>
-    </div>
+        <button type="submit">Submit</button>
+    </form>
 
     <script src="script.js"></script>
 </body>

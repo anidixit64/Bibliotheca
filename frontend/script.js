@@ -33,16 +33,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function submitBook() {
         console.log('Submitting book');
-        const id = bookIdInput.value;
-        const title = titleInput.value;
-        const author = authorInput.value;
-        const read = readInput.checked;
-
+        const id = bookIdInput.value; // Error could happen here
+        const title = titleInput.value; // Or here
+        const author = authorInput.value; // Or here
+        const read = readInput.checked; // Or here
+    
         const method = id ? 'PUT' : 'POST';
         const url = id ? `/books/${id}` : '/books';
-
-        console.log('Submitting book:', { title, author, read });
-
+    
         fetch(url, {
             method: method,
             headers: {
@@ -53,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fetchBooks();
             resetForm();
         });
-    }
+    }    
 
     function editBook(id) {
         fetch(`/books/${id}`)
@@ -88,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     bookList.addEventListener('click', function (e) {
+        console.log('element found'); 
         if (e.target.classList.contains('edit-btn')) {
             editBook(e.target.dataset.id);
         } else if (e.target.classList.contains('delete-btn')) {
