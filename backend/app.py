@@ -20,7 +20,7 @@ def create_app():
     @app.route('/books', methods=['GET'])
     def get_books():
         books = Book.query.all()
-        return jsonify([{'id': book.id, 'title': book.title, 'author': book.author, 'read': book.read} for book in books])
+        return jsonify([{'id': book.id, 'title': book.title, 'author': book.author, 'read': book.read} for book in books]) 
 
     @app.route('/books', methods=['POST'])
     def add_book():
@@ -32,11 +32,13 @@ def create_app():
     @app.route('/books/<int:book_id>', methods=['PUT'])
     def update_book(book_id):
         book = Book.query.get_or_404(book_id)
-        book.title = request.json.get('title', book.title)
-        book.author = request.json.get('author', book.author)
-        book.read = request.json.get('read', book.read)
+        data = request.get_json()  # Ensure request.json or request.get_json() is used correctly
+        book.title = data.get('title', book.title)
+        book.author = data.get('author', book.author)
+        book.read = data.get('read', book.read)
         db.session.commit()
         return jsonify({'id': book.id})
+
 
     @app.route('/books/<int:book_id>', methods=['DELETE'])
     def delete_book(book_id):
