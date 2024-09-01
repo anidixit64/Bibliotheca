@@ -21,6 +21,13 @@ def create_app():
     def get_books():
         books = Book.query.all()
         return jsonify([{'id': book.id, 'title': book.title, 'author': book.author, 'read': book.read} for book in books]) 
+    
+    # Add this route to fetch a single book by ID
+    @app.route('/books/<int:book_id>', methods=['GET'])
+    def get_book(book_id):
+        book = Book.query.get_or_404(book_id)  # This will automatically return a 404 if the book is not found
+        return jsonify({'id': book.id, 'title': book.title, 'author': book.author, 'read': book.read})
+
 
     @app.route('/books', methods=['POST'])
     def add_book():
