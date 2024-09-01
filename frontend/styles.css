@@ -40,12 +40,12 @@ button:hover {
     background-color: #0056b3;
 }
 
-#book-list ul {
+#books ul {
     list-style-type: none;
     padding: 0;
 }
 
-#book-list li {
+#books li {
     padding: 10px;
     background: #fff;
     border: 1px solid #ddd;
@@ -54,7 +54,7 @@ button:hover {
     justify-content: space-between;
 }
 
-#book-list button {
+#books button {
     margin-left: 10px;
     padding: 5px 10px;
     background-color: #dc3545;
@@ -63,10 +63,19 @@ button:hover {
     cursor: pointer;
 }
 
-#book-list button.edit-btn {
+#books button.edit-btn {
     background-color: #28a745;
 }
 
-#book-list button:hover {
+#books button:hover {
     opacity: 0.8;
+}
+
+/* Style for the Finalize button if needed */
+#finalize-edit {
+    background-color: #28a745;
+}
+
+#finalize-edit:hover {
+    background-color: #218838;
 }

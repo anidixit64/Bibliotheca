@@ -9,9 +9,13 @@
     <form id="book-form">
         <input type="text" id="title" placeholder="Book Title">
         <input type="text" id="author" placeholder="Author Name">
-        <input type="checkbox" id="read">
+        <input type="checkbox" id="read"> Read
+        <input type="hidden" id="book-id"> <!-- Hidden input for book ID -->
         <button type="submit">Submit</button>
+        <button type="button" id="finalize-edit" style="display: none;">Finalize</button> <!-- Finalize button -->
     </form>
+
+    <ul id="books"></ul> <!-- Book list element -->
 
     <script src="script.js"></script>
 </body>

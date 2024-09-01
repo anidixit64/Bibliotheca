@@ -11,8 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const authorInput = document.getElementById('author');
     const readInput = document.getElementById('read');
     const bookList = document.getElementById('books');
+    const finalizeButton = document.getElementById('finalize-edit');
 
     function fetchBooks() {
+        console.log("Fetching books");
         fetch('/books')
             .then(response => response.json())
             .then(books => {
@@ -33,10 +35,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function submitBook() {
         console.log('Submitting book');
-        const id = bookIdInput.value; // Error could happen here
-        const title = titleInput.value; // Or here
-        const author = authorInput.value; // Or here
-        const read = readInput.checked; // Or here
+        const id = bookIdInput.value; 
+        const title = titleInput.value; 
+        const author = authorInput.value; 
+        const read = readInput.checked; 
     
         const method = id ? 'PUT' : 'POST';
         const url = id ? `/books/${id}` : '/books';
@@ -54,17 +56,54 @@ document.addEventListener('DOMContentLoaded', function () {
     }    
 
     function editBook(id) {
+        console.log("Editing Book");
+    
+        // Fetch the book details to populate the form fields
         fetch(`/books/${id}`)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Book with ID ${id} not found`);
+                }
+                return response.json();
+            })
             .then(book => {
-                bookIdInput.value = book.id;
                 titleInput.value = book.title;
                 authorInput.value = book.author;
                 readInput.checked = book.read;
+                bookIdInput.value = book.id; // Set book ID in the hidden field
+    
+                // Show the Finalize button and hide the Submit button
+                finalizeButton.style.display = 'inline-block';
+                bookForm.querySelector('button[type="submit"]').style.display = 'none';
+            })
+            .catch(error => {
+                console.error('Error fetching book:', error);
+                alert('Failed to load book details. Please try again.');
             });
+    }
+    
+
+    function finalizeEdit() {
+        console.log('Finalizing edit');
+        const id = bookIdInput.value;
+        const title = titleInput.value;
+        const author = authorInput.value;
+        const read = readInput.checked;
+
+        fetch(`/books/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title, author, read }),
+        }).then(() => {
+            fetchBooks();
+            resetForm();
+        });
     }
 
     function deleteBook(id) {
+        console.log('Deleting book');
         fetch(`/books/${id}`, {
             method: 'DELETE',
         }).then(() => {
@@ -73,20 +112,29 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function resetForm() {
+        console.log('Resetting form');
         bookIdInput.value = '';
         titleInput.value = '';
         authorInput.value = '';
         readInput.checked = false;
+
+        // Ensure Finalize button is hidden and Submit button is shown when form is reset
+        finalizeButton.style.display = 'none';
+        bookForm.querySelector('button[type="submit"]').style.display = 'inline-block';
     }
 
     bookForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        console.log('Form submitted');  // Add this line
+        console.log('Submit event');  // Add this line
         submitBook()
     });
 
+    finalizeButton.addEventListener('click', function () {
+        finalizeEdit();
+    });
+
     bookList.addEventListener('click', function (e) {
-        console.log('element found'); 
+        console.log('Click event');
         if (e.target.classList.contains('edit-btn')) {
             editBook(e.target.dataset.id);
         } else if (e.target.classList.contains('delete-btn')) {
