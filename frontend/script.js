@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Script loaded');  // Add this line
     const bookForm = document.getElementById('book-form');
-    if (!bookForm) {
-        console.error('Form element not found');
-        return;
-    }
-    console.log('Form element found'); 
     const bookIdInput = document.getElementById('book-id');
     const titleInput = document.getElementById('title');
     const authorInput = document.getElementById('author');
@@ -13,8 +7,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const bookList = document.getElementById('books');
     const finalizeButton = document.getElementById('finalize-edit');
 
+    // Fetch books and render them in the list
     function fetchBooks() {
-        console.log("Fetching books");
         fetch('/books')
             .then(response => response.json())
             .then(books => {
@@ -30,35 +24,38 @@ document.addEventListener('DOMContentLoaded', function () {
                     `;
                     bookList.appendChild(li);
                 });
-            });
+            })
+            .catch(error => console.error('Error fetching books:', error));
     }
 
+    // Submit book (create or update based on the book ID presence)
     function submitBook() {
-        console.log('Submitting book');
-        const id = bookIdInput.value; 
-        const title = titleInput.value; 
-        const author = authorInput.value; 
-        const read = readInput.checked; 
-    
+        const id = bookIdInput.value;
+        const title = titleInput.value;
+        const author = authorInput.value;
+        const read = readInput.checked;
         const method = id ? 'PUT' : 'POST';
         const url = id ? `/books/${id}` : '/books';
-    
+
         fetch(url, {
             method: method,
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ title, author, read }),
-        }).then(() => {
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to submit the book');
+            }
             fetchBooks();
             resetForm();
-        });
+        })
+        .catch(error => console.error('Error submitting book:', error));
     }    
 
+    // Edit a book and populate the form with its details
     function editBook(id) {
-        console.log("Editing Book");
-    
-        // Fetch the book details to populate the form fields
         fetch(`/books/${id}`)
             .then(response => {
                 if (!response.ok) {
@@ -70,9 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 titleInput.value = book.title;
                 authorInput.value = book.author;
                 readInput.checked = book.read;
-                bookIdInput.value = book.id; // Set book ID in the hidden field
-    
-                // Show the Finalize button and hide the Submit button
+                bookIdInput.value = book.id;
                 finalizeButton.style.display = 'inline-block';
                 bookForm.querySelector('button[type="submit"]').style.display = 'none';
             })
@@ -81,10 +76,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Failed to load book details. Please try again.');
             });
     }
-    
 
+    // Finalize edit by updating the book
     function finalizeEdit() {
-        console.log('Finalizing edit');
         const id = bookIdInput.value;
         const title = titleInput.value;
         const author = authorInput.value;
@@ -96,45 +90,50 @@ document.addEventListener('DOMContentLoaded', function () {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ title, author, read }),
-        }).then(() => {
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to finalize edit');
+            }
             fetchBooks();
             resetForm();
-        });
+        })
+        .catch(error => console.error('Error finalizing edit:', error));
     }
 
+    // Delete a book by ID
     function deleteBook(id) {
-        console.log('Deleting book');
         fetch(`/books/${id}`, {
             method: 'DELETE',
-        }).then(() => {
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to delete the book');
+            }
             fetchBooks();
-        });
+        })
+        .catch(error => console.error('Error deleting book:', error));
     }
 
+    // Reset the form fields and visibility of buttons
     function resetForm() {
-        console.log('Resetting form');
         bookIdInput.value = '';
         titleInput.value = '';
         authorInput.value = '';
         readInput.checked = false;
-
-        // Ensure Finalize button is hidden and Submit button is shown when form is reset
         finalizeButton.style.display = 'none';
         bookForm.querySelector('button[type="submit"]').style.display = 'inline-block';
     }
 
+    // Event listeners
     bookForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        console.log('Submit event');  // Add this line
-        submitBook()
+        submitBook();
     });
 
-    finalizeButton.addEventListener('click', function () {
-        finalizeEdit();
-    });
+    finalizeButton.addEventListener('click', finalizeEdit);
 
     bookList.addEventListener('click', function (e) {
-        console.log('Click event');
         if (e.target.classList.contains('edit-btn')) {
             editBook(e.target.dataset.id);
         } else if (e.target.classList.contains('delete-btn')) {
@@ -142,5 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Initial fetch of books
     fetchBooks();
 });

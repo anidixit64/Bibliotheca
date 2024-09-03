@@ -1,81 +1,124 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
+    font-family: 'Garamond', serif; /* Classic font for ancient feel */
+    margin: 0;
+    padding: 0;
+    background-color: #f2e8d5; /* Parchment-like background */
+    color: #3e2723; /* Dark brown for text */
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Light overlay to mimic aged paper */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border: 2px solid #8b5e3c; /* Frame-like border */
+    border-radius: 10px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 h1 {
-    color: #333;
+    font-size: 2.5em;
+    margin: 0;
+    color: #6b4226; /* Strong brown for headers */
 }
 
+p {
+    font-style: italic;
+    color: #5e4033;
+}
+
+/* Form Styles */
 #book-form {
-    margin-bottom: 20px;
-    padding: 10px;
-    background: #fff;
-    border: 1px solid #ddd;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    background: #e7dac9; /* Lighter parchment color */
+    border: 1px solid #8b5e3c;
+    border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-label {
-    display: block;
-    margin-top: 10px;
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #8b5e3c;
+    border-radius: 5px;
+    background-color: #fff8e1; /* Light ivory */
 }
 
-input[type="text"], input[type="checkbox"] {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1em;
+    color: #3e2723;
+}
+
+.checkbox-container input {
+    margin-right: 8px;
 }
 
 button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #007bff;
+    padding: 10px 15px;
+    background-color: #6b4226;
     color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #8b5e3c;
 }
 
-#books ul {
-    list-style-type: none;
+/* Book List */
+#books {
+    list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 #books li {
-    padding: 10px;
-    background: #fff;
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
+    padding: 10px;
+    background: #f6f0e1; /* Soft parchment-like background */
+    border: 1px solid #8b5e3c;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#books span {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
 }
 
 #books button {
-    margin-left: 10px;
+    margin-left: 5px;
     padding: 5px 10px;
-    background-color: #dc3545;
-    color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 #books button.edit-btn {
-    background-color: #28a745;
+    background-color: #4caf50; /* Green for edit */
+}
+
+#books button.delete-btn {
+    background-color: #f44336; /* Red for delete */
 }
 
 #books button:hover {
     opacity: 0.8;
-}
-
-/* Style for the Finalize button if needed */
-#finalize-edit {
-    background-color: #28a745;
-}
-
-#finalize-edit:hover {
-    background-color: #218838;
 }

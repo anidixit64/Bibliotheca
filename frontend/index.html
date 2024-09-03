@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Collection Tracker</title>
+    <title>Bibliotheca - Book Collection Tracker</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form id="book-form">
-        <input type="text" id="title" placeholder="Book Title">
-        <input type="text" id="author" placeholder="Author Name">
-        <input type="checkbox" id="read"> Read
-        <input type="hidden" id="book-id"> <!-- Hidden input for book ID -->
-        <button type="submit">Submit</button>
-        <button type="button" id="finalize-edit" style="display: none;">Finalize</button> <!-- Finalize button -->
-    </form>
-
-    <ul id="books"></ul> <!-- Book list element -->
-
+    <div class="container">
+        <header>
+            <h1>Bibliotheca</h1>
+            <p>Welcome to your ancient library. Track your collection with care.</p>
+        </header>
+        <form id="book-form">
+            <input type="text" id="title" placeholder="Book Title">
+            <input type="text" id="author" placeholder="Author Name">
+            <label class="checkbox-container">
+                <input type="checkbox" id="read"> 
+                <span class="checkmark"></span>
+                Read
+            </label>
+            <input type="hidden" id="book-id">
+            <button type="submit">Submit</button>
+            <button type="button" id="finalize-edit" style="display: none;">Finalize</button>
+        </form>
+        <ul id="books"></ul>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

@@ -25,13 +25,13 @@ def create_app():
     # Add this route to fetch a single book by ID
     @app.route('/books/<int:book_id>', methods=['GET'])
     def get_book(book_id):
-        book = Book.query.get_or_404(book_id)  # This will automatically return a 404 if the book is not found
+        book = Book.query.get_or_404(book_id)
         return jsonify({'id': book.id, 'title': book.title, 'author': book.author, 'read': book.read})
-
 
     @app.route('/books', methods=['POST'])
     def add_book():
-        new_book = Book(title=request.json['title'], author=request.json['author'], read=request.json.get('read', False))
+        data = request.get_json()
+        new_book = Book(title=data['title'], author=data['author'], read=data.get('read', False))
         db.session.add(new_book)
         db.session.commit()
         return jsonify({'id': new_book.id}), 201
@@ -39,13 +39,12 @@ def create_app():
     @app.route('/books/<int:book_id>', methods=['PUT'])
     def update_book(book_id):
         book = Book.query.get_or_404(book_id)
-        data = request.get_json()  # Ensure request.json or request.get_json() is used correctly
+        data = request.get_json()
         book.title = data.get('title', book.title)
         book.author = data.get('author', book.author)
         book.read = data.get('read', book.read)
         db.session.commit()
         return jsonify({'id': book.id})
-
 
     @app.route('/books/<int:book_id>', methods=['DELETE'])
     def delete_book(book_id):
