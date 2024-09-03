@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Bibliotheca</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('library_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Garamond', serif;
+            color: #3e2723;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .welcome-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border: 2px solid #8b5e3c;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 4em;
+            margin: 0;
+            color: #6b4226;
+        }
+        p {
+            font-style: italic;
+            color: #5e4033;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 15px 30px;
+            background-color: #6b4226;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #8b5e3c;
+        }
+        .settings-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Bibliotheca</h1>
+        <p>Si hortum in bibliotheca habes, nihil deerit</p>
+        <a href="/list" class="btn">Make List</a>
+        <a href="/" class="btn" style="margin-top: 10px;">Back to Welcome</a>
+    </div>
+    <a href="/settings">
+        <img src="settings_icon.png" alt="Settings" class="settings-icon">
+    </a>
+</body>
+</html>

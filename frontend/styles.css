@@ -7,6 +7,56 @@ body {
     color: #3e2723;
 }
 
+/* Welcome Page Styles */
+.welcome-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('path-to-ancient-library-image.jpg'); /* Use a faint ancient library image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: lighten;
+}
+
+.welcome-container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border: 2px solid #8b5e3c;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-container h1 {
+    font-size: 4em;
+    margin: 0;
+    color: #6b4226;
+}
+
+.welcome-container p {
+    font-size: 1.5em;
+    color: #5e4033;
+    margin-bottom: 20px;
+}
+
+#welcome-container button {
+    padding: 15px 25px;
+    font-size: 1.2em;
+    background-color: #6b4226;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#welcome-container button:hover {
+    background-color: #8b5e3c;
+}
+
+/* Styles for Main List Page */
 .container {
     max-width: 800px;
     margin: auto;

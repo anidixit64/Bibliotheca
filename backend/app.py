@@ -22,7 +22,6 @@ def create_app():
         books = Book.query.all()
         return jsonify([{'id': book.id, 'title': book.title, 'author': book.author, 'read': book.read} for book in books]) 
     
-    # Add this route to fetch a single book by ID
     @app.route('/books/<int:book_id>', methods=['GET'])
     def get_book(book_id):
         book = Book.query.get_or_404(book_id)
@@ -53,10 +52,20 @@ def create_app():
         db.session.commit()
         return '', 204
 
-    # Serve the frontend
+    # Serve the welcome page as the default
     @app.route('/')
-    def home():
+    def welcome():
+        return send_from_directory(app.static_folder, 'welcome.html')
+
+    # Serve the main list page
+    @app.route('/list')
+    def list_page():
         return send_from_directory(app.static_folder, 'index.html')
+
+    # Serve the settings page
+    @app.route('/settings')
+    def settings_page():
+        return send_from_directory(app.static_folder, 'settings.html')
 
     return app
 
