@@ -10,7 +10,7 @@
     <div class="container">
         <header>
             <h1>Bibliotheca</h1>
-            <p>Welcome to your ancient library. Track your collection with care.</p>
+            <p>Si hortum in bibliotheca habes, nihil deerit</p>
         </header>
         <form id="book-form">
             <input type="text" id="title" placeholder="Book Title">
@@ -24,7 +24,16 @@
             <button type="submit">Submit</button>
             <button type="button" id="finalize-edit" style="display: none;">Finalize</button>
         </form>
-        <ul id="books"></ul>
+        <div class="book-lists">
+            <div class="book-list">
+                <h2>To Read</h2>
+                <ul id="unread-books"></ul>
+            </div>
+            <div class="book-list">
+                <h2>Read</h2>
+                <ul id="read-books"></ul>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

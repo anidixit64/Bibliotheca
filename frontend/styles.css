@@ -1,19 +1,19 @@
 /* General Styles */
 body {
-    font-family: 'Garamond', serif; /* Classic font for ancient feel */
+    font-family: 'Garamond', serif;
     margin: 0;
     padding: 0;
-    background-color: #f2e8d5; /* Parchment-like background */
-    color: #3e2723; /* Dark brown for text */
+    background-color: #f2e8d5;
+    color: #3e2723;
 }
 
 .container {
     max-width: 800px;
     margin: auto;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.8); /* Light overlay to mimic aged paper */
+    background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border: 2px solid #8b5e3c; /* Frame-like border */
+    border: 2px solid #8b5e3c;
     border-radius: 10px;
 }
 
@@ -25,7 +25,7 @@ header {
 h1 {
     font-size: 2.5em;
     margin: 0;
-    color: #6b4226; /* Strong brown for headers */
+    color: #6b4226;
 }
 
 p {
@@ -39,7 +39,7 @@ p {
     flex-wrap: wrap;
     gap: 10px;
     padding: 15px;
-    background: #e7dac9; /* Lighter parchment color */
+    background: #e7dac9;
     border: 1px solid #8b5e3c;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
@@ -50,7 +50,7 @@ input[type="text"] {
     padding: 10px;
     border: 1px solid #8b5e3c;
     border-radius: 5px;
-    background-color: #fff8e1; /* Light ivory */
+    background-color: #fff8e1;
 }
 
 .checkbox-container {
@@ -79,46 +79,67 @@ button:hover {
     background-color: #8b5e3c;
 }
 
-/* Book List */
-#books {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Book Lists */
+.book-lists {
+    display: flex;
+    gap: 20px;
 }
 
-#books li {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background: #f6f0e1; /* Soft parchment-like background */
+.book-list {
+    flex: 1;
+    background: #f6f0e1;
+    padding: 15px;
     border: 1px solid #8b5e3c;
     border-radius: 5px;
-    margin-bottom: 10px;
 }
 
-#books span {
-    flex: 1;
+.book-list h2 {
+    font-size: 1.8em;
+    color: #6b4226;
+    margin-top: 0;
+}
+
+#unread-books, #read-books {
+    list-style: none;
+    padding: 0;
+}
+
+.book-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #8b5e3c;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #3e2723;
+}
+
+.book-author {
+    font-size: 1em;
+    font-style: italic;
+    color: #6b4223;
+}
+
+.book-actions {
     display: flex;
     align-items: center;
-    font-weight: bold;
 }
 
-#books button {
-    margin-left: 5px;
+.book-actions button {
     padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#books button.edit-btn {
-    background-color: #4caf50; /* Green for edit */
-}
-
-#books button.delete-btn {
-    background-color: #f44336; /* Red for delete */
-}
-
-#books button:hover {
-    opacity: 0.8;
+    font-size: 0.9em;
+    margin-left: 10px;
 }
